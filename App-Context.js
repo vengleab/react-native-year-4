@@ -7,7 +7,6 @@ import {
   Button,
   FlatList,
 } from 'react-native';
-import Item from './src/week4/components/Item';
 import ShopList from './src/week4/components/ShopList';
 import ShopListContext from './src/week4/components/ShopListContext';
 import ListContext from './src/week4/components/ListContext';
@@ -56,7 +55,7 @@ export default class App extends React.Component {
         />
         <Button title="Add new item" onPress={this.addItem} />
         <Text style={styles.defaultFontSize}>Shopping List</Text>
-        <ListContext.Provider value={this.state.shopList} >
+        <ListContext.Provider value={this.state.shopList}>
           <ShopListContext.Provider
             value={{
               selectedItem: this.state.selectedItem,
@@ -73,12 +72,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   defaultFontSize: {
     fontSize: 20,
-  },
-  item: {
-    backgroundColor: '#DDD',
-    padding: 10,
-    textAlign: 'center',
-    margin: 5,
   },
   button: {
     margin: 5,
