@@ -1,26 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import ShopListContext from './ShopListContext';
 
 const Item = props => {
   const {index, item} = props;
+  const context = useContext(ShopListContext);
   return (
-    <ShopListContext.Consumer>
-      {({handleSelectItem, selectedItem}) => {
-        return (
-          <TouchableOpacity onPress={() => handleSelectItem(item)}>
-            <Text
-              key={index}
-              style={StyleSheet.flatten([
-                styles.item,
-                selectedItem === item && styles.active,
-              ])}>
-              {index} - {item}
-            </Text>
-          </TouchableOpacity>
-        );
-      }}
-    </ShopListContext.Consumer>
+    <TouchableOpacity onPress={() => context.handleSelectItem(item)}>
+      <Text
+        key={index}
+        style={StyleSheet.flatten([
+          styles.item,
+          context.selectedItem === item && styles.active,
+        ])}>
+        {index} - {item}
+      </Text>
+    </TouchableOpacity>
   );
 };
 export default Item;
