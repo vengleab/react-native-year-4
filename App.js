@@ -5,42 +5,18 @@ import {
   StyleSheet,
   TextInput,
   Button,
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableNativeFeedback,
-  SafeAreaView,
-  ScrollView,
   FlatList,
 } from 'react-native';
-// import Icon from 'react-native-vector-icons/FontAwesome';
+import Item from './src/week4/components/Item';
+import ShopList from './src/week4/components/ShopList';
+import ShopListContext from './src/week4/components/ShopListContext';
+import ListContext from './src/week4/components/ListContext';
+
 
 export default class App extends React.Component {
   state = {
-    shopList: [
-      'Apple',
-      'Banana',
-      'Potato',
-      'ABC',
-      'Fist',
-      'Pen',
-      'Pencil',
-      // 'Apple',
-      // 'Banana',
-      // 'Potato',
-      // 'ABC',
-      // 'Fist',
-      // 'Pen',
-      // 'Pencil',
-      // 'Pen',
-      // 'Pencil',
-      // 'Apple',
-      // 'Banana',
-      // 'Potato',
-      // 'ABC',
-      // 'Fist',
-      // 'Pen',
-      // 'Pencil',
-    ],
+    shopList: ['Apple', 'Banana', 'Potato', 'ABC', 'Fist', 'Pen', 'Pencil'],
+    selectedItem: '',
   };
 
   addItem = () => {
@@ -58,20 +34,17 @@ export default class App extends React.Component {
     // this.
   };
 
+  handleSelectItem = item => {
+    this.setState({
+      selectedItem: item,
+    });
+  };
+
   handleNewItem = item => {
     this.setState({
       newItem: item,
     });
   };
-
-  renderItem = ({index, item}) => {
-    return (
-      <Text key={index} style={styles.item}>
-        {index} - {item}
-      </Text>
-    );
-  };
-
   render() {
     return (
       <View>
@@ -83,16 +56,15 @@ export default class App extends React.Component {
         />
         <Button title="Add new item" onPress={this.addItem} />
         <Text style={styles.defaultFontSize}>Shopping List</Text>
-        {/* <ScrollView>
-          {this.state.shopList.map((item, index) => {
-            return (
-              <Text key={index} style={styles.item}>
-                {item}
-              </Text>
-            );
-          })}
-          </ScrollView> */}
-        <FlatList data={this.state.shopList} renderItem={this.renderItem} />
+        <ListContext.Provider value={this.state.shopList} >
+          <ShopListContext.Provider
+            value={{
+              selectedItem: this.state.selectedItem,
+              handleSelectItem: this.handleSelectItem,
+            }}>
+            <ShopList />
+          </ShopListContext.Provider>
+        </ListContext.Provider>
       </View>
     );
   }
