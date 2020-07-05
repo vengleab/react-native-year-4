@@ -7,10 +7,9 @@ import {
   Button,
   FlatList,
 } from 'react-native';
-import ShopList from './src/week4/components/ShopList';
-import ShopListContext from './src/week4/components/ShopListContext';
-import ListContext from './src/week4/components/ListContext';
-
+import ShopList from '../components/ShopList';
+import ShopListContext from '../components/ShopListContext';
+import ListContext from '../components/ListContext';
 
 export default class App extends React.Component {
   state = {
