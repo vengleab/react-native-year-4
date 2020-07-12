@@ -1,3 +1,3 @@
-import AppContext from './src/week4/screen/AppContext';
+import App from './src/week5/App';
 
-export default AppContext;
+export default App;
