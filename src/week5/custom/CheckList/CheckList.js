@@ -47,7 +47,7 @@ export default CheckList;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
   },
   icon: {
     width: 25,
