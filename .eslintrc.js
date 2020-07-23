@@ -3,6 +3,7 @@ module.exports = {
   extends: '@react-native-community',
   rules: {
     "quotes": ["error","single"],
-    "react-native/no-inline-styles": "off"
+    "react-native/no-inline-styles": "off",
+    "no-alert": "off"
   }
 };

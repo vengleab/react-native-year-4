@@ -46,9 +46,7 @@ export default class App extends React.Component {
       <SafeAreaView>
         <View>
           <View style={styles.inputGroup}>
-            <Text style={styles.defaultFontSize}>
-              User name
-              </Text>
+            <Text style={styles.defaultFontSize}>User name</Text>
             <TextInput
               style={StyleSheet.compose(
                 styles.defaultFontSize,
