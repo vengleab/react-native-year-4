@@ -8,28 +8,39 @@ export class DefaultModel {
   // CRUD
   // CREATE
   async add(data) {
-    await AsyncStorage.setItem(this.defaultKey, JSON.stringify(data));
+    const records = await this.getAll();
+    const newRecords = [...records, data];
+    await AsyncStorage.setItem(this.defaultKey, JSON.stringify(newRecords));
   }
 
   // Read
-  async getByKey(key) {
-    const result = await AsyncStorage.getItem(this.defaultKey);
-    return result && JSON.parse(result);
+  async getById(id) {
+    const records = await this.getAll();
+    return records.filter(record => record === id);
   }
 
   async getAll() {
-    const allKeys = await AsyncStorage.getAllKeys();
-    return await AsyncStorage.multiGet(allKeys);
+    const data = await AsyncStorage.getItem(this.defaultKey);
+    console.log('data', data);
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return [];
+    }
   }
 
   // Update
-  async update(key, data) {
-    await AsyncStorage.setItem(key, JSON.stringify(data));
+  async update(id, data) {
+    const records = await this.getAll();
+    const newRecords = records.map(record =>
+      record.id === id ? data : record,
+    );
+    await AsyncStorage.setItem(this.defaultKey, JSON.stringify(newRecords));
   }
 
   //
   async delete(key) {
-    await AsyncStorage.removeItem(key);
+    // await AsyncStorage.removeItem(key);
   }
 
   async clear() {

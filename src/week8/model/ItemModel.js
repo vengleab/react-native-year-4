@@ -1,25 +1,9 @@
-import {DefaultModel} from './DefaultModel';
+import {ArrayModel} from './ArrayModel';
 
-class ItemModel extends DefaultModel {
+class ItemModel extends ArrayModel {
   constructor() {
     super();
     this.defaultKey = '@ITEMS';
-  }
-
-  async add(item) {
-    const oldItems = await this.getByKey(this.defaultKey);
-    console.log({oldItems});
-    if (oldItems) {
-      await this.update(this.defaultKey, [...oldItems, item]);
-    } else {
-      await this.update(this.defaultKey, [item]);
-    }
-  }
-
-  async getAll() {
-    const allItems = await this.getByKey(this.defaultKey);
-    console.log({allItems});
-    return allItems ? allItems : [];
   }
 }
 
