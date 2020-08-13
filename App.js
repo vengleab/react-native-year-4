@@ -1,3 +1,3 @@
-import App from './src/week8/App';
+import App from './src/week10/App';
 
 export default App;
